@@ -6,11 +6,20 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 10:07:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/04/20 15:54:00 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:26:54 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+long long	ft_current_time(long n)
+{
+	struct timeval	tv;
+	long long		ms_time;
+
+	gettimeofday(&tv, NULL);
+	return (((tv.tv_sec) * 1000 + (tv.tv_usec) / 1000) - n);
+}
 
 int	ft_atoi(const char *str)
 {

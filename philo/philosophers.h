@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:51:52 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/04/24 16:02:22 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:00:35 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ typedef struct s_philo
 	struct s_philo	*next;
 	pthread_t		philot;
 	t_data			*data;
-	int				public_time;
 	int				id;
-	int				eating_start_time;
 	int				starve_time;
 	int				eating_done_count;
 	int				must_eat;

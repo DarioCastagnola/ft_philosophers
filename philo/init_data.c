@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:46:33 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/04/24 16:49:50 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:27:12 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	init(int argc, char **argv, t_data *rules)
 	rules->time_to_die = ft_atoi(argv[2]);
 	rules->time_to_eat = ft_atoi(argv[3]);
 	rules->time_to_sleep = ft_atoi(argv[4]);
-	rules->death = 0;
+	rules->death = 1;
+	rules->startime = ft_current_time(0);
 	if (argc == 6)
 		rules->must_eat = ft_atoi(argv[5]);
 	else
@@ -71,4 +72,15 @@ void	init_thread(t_philo *philo)
 		i++;
 	}
 	pthread_create(&data.phdoa, NULL, ft_dead_or_alive, (void *)philo);
+}
+
+void	join_threads(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->data->number_of_philosophers)
+	{
+		pthread_join(philo->philot, NULL);
+	}
 }
