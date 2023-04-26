@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:46:33 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/04/25 15:27:12 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:36:31 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	init(int argc, char **argv, t_data *rules)
 	if (argc == 6)
 		rules->must_eat = ft_atoi(argv[5]);
 	else
-		rules->must_eat = 0;
+		rules->must_eat = -2;
 	if (rules->number_of_philosophers == -1
 		|| rules->time_to_die == -1
 		|| rules->time_to_eat == -1
@@ -33,7 +33,7 @@ int	init(int argc, char **argv, t_data *rules)
 	return (0);
 }
 
-void	init_philo(t_data *data)
+t_philo	*init_philo(t_data *data)
 {
 	t_philo	*tmp;
 	t_philo	*philo;
@@ -82,5 +82,6 @@ void	join_threads(t_philo *philo)
 	while (i < philo->data->number_of_philosophers)
 	{
 		pthread_join(philo->philot, NULL);
+		i++;
 	}
 }

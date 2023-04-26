@@ -6,19 +6,27 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 10:07:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/04/25 15:26:54 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:12:32 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long long	ft_current_time(long n)
+long	ft_current_time(long n)
 {
 	struct timeval	tv;
-	long long		ms_time;
 
 	gettimeofday(&tv, NULL);
 	return (((tv.tv_sec) * 1000 + (tv.tv_usec) / 1000) - n);
+}
+
+void	susleep(int ms)
+{
+	long	start;
+
+	start = ft_current_time(0);
+	while (ft_current_time(start) < ms)
+		usleep(100);
 }
 
 int	ft_atoi(const char *str)
@@ -44,21 +52,19 @@ int	ft_atoi(const char *str)
 	}
 	if (num > 2147483647)
 		return (-1);
-	if (num < -2147483648)
-		return (0);
 	return (num * sign);
 }
 
-void	ft_bzero(void *a, size_t len)
+void	free_all(t_philo *philo)
 {
-	size_t			i;
-	unsigned char	*tmp_a;
+	int	i;
 
 	i = 0;
-	tmp_a = a;
-	while (len > i)
+	while (i < philo->data->number_of_philosophers)
 	{
-		tmp_a[i] = 0;
+		pthread_mutex_destroy(&philo->fork);
+		free(philo);
+		philo = philo->next;
 		i++;
 	}
 }

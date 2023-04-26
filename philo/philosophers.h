@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:51:52 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/04/25 15:00:35 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:54:33 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_data
 	int			time_to_sleep;
 	int			time_to_eat;
 	int			mstime;
-	int			startime;
+	long		startime;
 	int			must_eat;
 	int			death;
 }	t_data;
@@ -43,11 +43,22 @@ typedef struct s_philo
 	pthread_t		philot;
 	t_data			*data;
 	int				id;
-	int				starve_time;
-	int				eating_done_count;
+	long			starve_time;
 	int				must_eat;
 }	t_philo;
 
-int	ft_atoi(const char *str);
+int			ft_atoi(const char *str);
+int			ft_isdigit(int c);
+int			check_args(int argc, char **argv);
+int			init(int argc, char **argv, t_data *rules);
+t_philo		*init_philo(t_data *data);
+void		init_thread(t_philo *philo);
+void		join_threads(t_philo *philo);
+void		ft_lonely_philo(t_philo	*philo);
+void		*ft_routine(void *filo);
+void		*ft_dead_or_alive(void *filo);
+long		ft_current_time(long n);
+void		free_all(t_philo *philo);
+void		susleep(int ms);
 
 #endif
