@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:51:52 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/04/26 15:54:33 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/04/27 12:23:29 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@
 
 typedef struct s_data
 {
-	pthread_t	phdoa;
-	int			number_of_philosophers;
-	int			time_to_die;
-	int			time_to_sleep;
-	int			time_to_eat;
-	int			mstime;
-	long		startime;
-	int			must_eat;
-	int			death;
+	pthread_t		phdoa;
+	int				number_of_philosophers;
+	int				time_to_die;
+	int				time_to_sleep;
+	int				time_to_eat;
+	int				mstime;
+	long			startime;
+	int				must_eat;
+	int				death;
+	int				initall;
 }	t_data;
 
 typedef struct s_philo
@@ -60,5 +61,6 @@ void		*ft_dead_or_alive(void *filo);
 long		ft_current_time(long n);
 void		free_all(t_philo *philo);
 void		susleep(int ms);
+void		ft_last_supper(t_philo	*philo);
 
 #endif
